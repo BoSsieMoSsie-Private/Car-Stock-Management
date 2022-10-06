@@ -1,5 +1,7 @@
-using DataAccess;
+
+using Car_Stock_Management.Data;
 using Microsoft.EntityFrameworkCore;
+using Car_Stock_Management.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
  
@@ -9,7 +11,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<CMSContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("defualtConnection")));
+builder.Services.AddSqlServer<CMSContext>(builder.Configuration.GetConnectionString("DefaultConnection"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
